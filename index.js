@@ -16,6 +16,7 @@ export default {
         app.config.globalProperties.$notify = (message, options) => {
             options = options || {};
             notifications.data.notifications.push({
+                id: new Date(),
                 message: message,
                 action: options.action ?? {}
             });

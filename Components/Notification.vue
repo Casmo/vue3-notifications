@@ -1,4 +1,3 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
     <transition enter-active-class="transition duration-300 ease-out transform" enter-from-class="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2" enter-to-class="translate-y-0 opacity-100 sm:translate-x-0" leave-active-class="transition duration-100 ease-in" leave-from-class="opacity-100" leave-to-class="opacity-0">
         <div v-if="show" class="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg pointer-events-auto ring-1 ring-black ring-opacity-5">
@@ -13,7 +12,7 @@
                     </button>
                     </div>
                     <div class="flex flex-shrink-0 ml-4">
-                    <button @click="show = false" class="inline-flex text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <button @click="closeNotification" class="inline-flex text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         <span class="sr-only">Close</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -27,37 +26,40 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
 
 export default {
-  components: {
-  },
   props: {
       duration: {
-            type: Number,
-            default: 5000,
+        type: Number,
+        default: 5000,
     },
     notification: {
-            type: Object,
-            required: true,
+        type: Object,
+        required: true,
     }
   },
-  setup(props) {
-    const show = ref(true);
-
-onMounted(() => {
-    setTimeout(() => {
-        // show.value = false
-    }, props.duration);
-});
-    return {
-      show
-    }
+  data() {
+      return {
+          show: true,
+          timer: null,
+      }
+  },
+  created() {
+      this.timer = setTimeout(() => {
+          this.closeNotification();
+      }, this.duration);
   },
   methods: {
     handleAction() {
       this.$emit('handleAction');
     },
+    closeNotification() {
+        this.show = false;
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
+        this.$emit('closed');
+    }
   }
 }
 </script>
