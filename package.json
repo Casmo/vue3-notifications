@@ -1,6 +1,6 @@
 {
   "name": "vue3-tailwind-notifications",
-  "version": "1.0.0",
+  "version": "v0.0.1",
   "description": "Super simple notification plugin for vue3 with actions styled in tailwindcss.",
   "main": "index.js",
   "scripts": {
