@@ -31,7 +31,7 @@ export default {
   props: {
       duration: {
         type: Number,
-        default: 5000,
+        default: 7500,
     },
     notification: {
         type: Object,
@@ -45,9 +45,13 @@ export default {
       }
   },
   mounted() {
-      this.timer = setTimeout(() => {
-          this.closeNotification();
-      }, this.duration);
+    let duration = this.duration;
+    if (this.notification.duration != null) {
+        duration = this.notification.duration;
+    }
+    this.timer = setTimeout(() => {
+        this.closeNotification();
+    }, duration);
   },
   methods: {
     handleAction() {
