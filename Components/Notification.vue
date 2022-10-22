@@ -4,20 +4,20 @@
             <div class="p-4">
                 <div class="flex items-center">
                     <div class="flex justify-between flex-1 w-0">
-                    <p class="flex-1 w-0 text-sm font-medium text-gray-900">
-                        {{ notification.message }}
-                    </p>
-                    <button v-if="notification.action" @click="handleAction" type="button" class="flex-shrink-0 ml-3 text-sm font-medium text-indigo-600 bg-white rounded-md hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        {{ notification.action.label }}
-                    </button>
+                        <p class="flex-1 w-0 text-sm font-medium text-gray-900">
+                            {{ notification.message }}
+                        </p>
+                        <button v-if="notification.action" @click="handleAction" type="button" class="flex-shrink-0 ml-3 text-sm font-medium text-indigo-600 bg-white rounded-md hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            {{ notification.action.label }}
+                        </button>
                     </div>
                     <div class="flex flex-shrink-0 ml-4">
-                    <button @click="closeNotification" class="inline-flex text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        <span class="sr-only">Close</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+                        <button @click="closeNotification" class="inline-flex text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <span class="sr-only">Close</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@ export default {
           timer: null,
       }
   },
-  created() {
+  mounted() {
       this.timer = setTimeout(() => {
           this.closeNotification();
       }, this.duration);
