@@ -1,7 +1,7 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <!-- Global notification live region, render this permanently at the end of the document -->
-  <div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6">
+  <div aria-live="assertive" class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6">
     <div class="flex flex-col items-center w-full space-y-4 sm:items-end">
       <Notification v-for="(notification, index) in notifications" :key="index" :notification="notification" @handleAction="handleAction(notification)" />
     </div>
